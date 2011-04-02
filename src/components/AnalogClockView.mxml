@@ -19,7 +19,7 @@
 			// Show digits (hours) of analog clock
 			private function drawLabels():void
 			{
-				var radius:int = 230;
+				var radius:int = 180;
 				var centerX:int = secondsPointer.x; // 400;
 				var centerY:int = secondsPointer.y; //340;
 				for (var i:Number = 1; i <= 12; i++)
@@ -46,19 +46,19 @@
 		]]>
 	</fx:Script>
 	
-	<s:Line x="150" y="250" width="200" id="secondsPointer" rotation="{(model.seconds * 6) - 90}" >
+	<s:Line x="150" y="200" width="150" id="secondsPointer" rotation="{(model.seconds * 6) - 90}" >
 		<s:stroke>
 			<s:SolidColorStroke color="#cccccc"	weight="1"/>
 		</s:stroke>
 	</s:Line>
 	
-	<s:Line x="150" y="250" width="200" id="minutesPointer" rotation="{(model.minutes * 6) - 90}" >
+	<s:Line x="150" y="200" width="150" id="minutesPointer" rotation="{(model.minutes * 6) - 90}" >
 		<s:stroke>
 			<s:SolidColorStroke color="#FFFFFF"	weight="5"/>
 		</s:stroke>
 	</s:Line>
 
-	<s:Line x="150" y="250" width="120" id="hoursPointer" rotation="{(model.hours * 30 + (model.minutes * 0.5)) - 90}" >
+	<s:Line x="150" y="200" width="70" id="hoursPointer" rotation="{(model.hours * 30 + (model.minutes * 0.5)) - 90}" >
 		<s:stroke>
 			<s:SolidColorStroke color="#FFFFFF"	weight="15"/>
 		</s:stroke>

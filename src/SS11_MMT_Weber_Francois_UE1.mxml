@@ -2,8 +2,7 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" 
-			   xmlns:components="components.*" 
-			   >
+			   xmlns:components="components.*">
 
 	<fx:Style source="styles.css"/>	
 	<fx:Script>
@@ -27,7 +26,6 @@
 			public function changeUTCHandler():void {
 				model.timeZoneOffset = timeZoneSwitch.value;
 			}
-						
 		]]>
 	</fx:Script>
 	
@@ -55,7 +53,7 @@
 		<components:AnalogClockView includeIn="analog" />	
 		
 		<s:Label text="UTC TimeZone {model.timeZoneOffset}"/>		
-		<s:HSlider id="timeZoneSwitch" liveDragging="true" includeIn="digital, analog" maximum="12" minimum="-12" change="changeUTCHandler()" height="30" width="175"/>
+		<s:HSlider id="timeZoneSwitch" liveDragging="true" includeIn="digital, analog" maximum="12" minimum="-12" change="changeUTCHandler()" height="15" width="175"/>
 	</s:VGroup>
 
 </s:Application>

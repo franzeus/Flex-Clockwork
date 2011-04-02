@@ -11,24 +11,36 @@ package models
 		private var _minutes:Number;
 		private var _seconds:Number;
 		private var _timeZoneOffset:int;
-		private var now:Date;
 		
 		private var theTimer:Timer;
 		
+		private var currentTime:Date;
+		private var currentUTCTime:Date;
+		
 		public function Model()
 		{
-			now = new Date();
+			// ** Init Time ** //
+			currentUTCTime = new Date();
+			_hours 	 = currentUTCTime.getHours();
+			_minutes = currentUTCTime.getMinutes();
+			_seconds = currentUTCTime.getSeconds();
 			
 			theTimer = new Timer(1000);
 			theTimer.addEventListener(TimerEvent.TIMER, tick);
 			theTimer.start();
-			
-			timeZoneOffset = 1;
 		}	
 		
 		// ----------------------------------------------------
-		private function tick(event:TimerEvent):void {
-			now = new Date();
+		private function tick(event:TimerEvent):void {				
+			currentUTCTime = new Date();
+			//currentUTCTime.setTime(currentTime.getTime() + currentTime.getTimezoneOffset() * 60 * 1000);
+			currentUTCTime.setTime(currentUTCTime.getTime() + timeZoneOffset * 60 * 60 * 1000);
+			//
+			_hours 	 = currentUTCTime.getHours();
+			_minutes = currentUTCTime.getMinutes();
+			_seconds = currentUTCTime.getSeconds();
+
+			trace("T:" + timeZoneOffset);
 			dispatchEvent(new Event("currentTimeChanged"));
 		}
 		
@@ -39,7 +51,6 @@ package models
 				return;
 			
 			_timeZoneOffset = value;
-			
 			dispatchEvent(new Event("currentUTCChanged"));
 		}
 		
@@ -50,18 +61,17 @@ package models
 
 		[Bindable(event="currentTimeChanged")]
 		public function get seconds():Number {
-			return now.getSeconds();
+			return _seconds;
 		}
 
 		[Bindable(event="currentTimeChanged")]
 		public function get minutes():int {
-			return now.getMinutes();
+			return _minutes;
 		}
 
 		[Bindable(event="currentTimeChanged")]
 		public function get hours():Number	{
-			trace(_timeZoneOffset);
-			return now.getUTCHours() + timeZoneOffset;
+			return _hours;
 		}
 
 	}
