@@ -16,15 +16,14 @@
 			[Bindable]
 			private var model:Model = new Model();
 			
-			// Show hours of analog clock
+			// Show digits (hours) of analog clock
 			private function drawLabels():void
 			{
 				var radius:int = 230;
 				var centerX:int = secondsPointer.x; // 400;
 				var centerY:int = secondsPointer.y; //340;
 				for (var i:Number = 1; i <= 12; i++)
-				{
-					
+				{					
 					var label:Label = new Label();
 					label.text = i.toString();
 					

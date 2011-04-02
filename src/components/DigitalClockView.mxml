@@ -15,9 +15,9 @@
 	
 	<s:HGroup id="digitalClockView">
 		<s:Label text="{model.hours}" id="hours"/>
-		<s:Label text=":"/>
+		<s:Label text=":" styleName="dots"/>
 		<s:Label text="{model.minutes}" id="minutes"/>
-		<s:Label text=":"/>
+		<s:Label text=":" styleName="dots"/>
 		<s:Label text="{model.seconds}" id="seconds"/>
 	</s:HGroup>
 

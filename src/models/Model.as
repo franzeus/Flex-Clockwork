@@ -5,7 +5,6 @@ package models
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
-	[Bindable]
 	public class Model extends EventDispatcher
 	{
 		private var _hours:Number;
@@ -28,28 +27,30 @@ package models
 		}	
 		
 		// ----------------------------------------------------
+		private function tick(event:TimerEvent):void {
+			now = new Date();
+			dispatchEvent(new Event("currentTimeChanged"));
+		}
+		
+		// ----------------------------------------------------
 		// Getter & Setter
+		public function set timeZoneOffset(value:int):void	{			
+			if(value == _timeZoneOffset)
+				return;
+			
+			_timeZoneOffset = value;
+			
+			dispatchEvent(new Event("currentUTCChanged"));
+		}
+		
 		[Bindable(event="currentUTCChanged")]
 		public function get timeZoneOffset():int {
 			return _timeZoneOffset;
 		}
 
-		public function set timeZoneOffset(value:int):void	{			
-			if(value == _timeZoneOffset)
-				return;
-				
-			_timeZoneOffset = value;
-			
-			dispatchEvent(new Event("currentUTCChanged"));
-			trace(timeZoneOffset);
-		}
-
 		[Bindable(event="currentTimeChanged")]
 		public function get seconds():Number {
-			var add:Number = 0;
-			var addCero:Number = now.getSeconds() < 10 ? add + now.getSeconds() : now.getSeconds();
-			
-			return addCero;
+			return now.getSeconds();
 		}
 
 		[Bindable(event="currentTimeChanged")]
@@ -59,20 +60,8 @@ package models
 
 		[Bindable(event="currentTimeChanged")]
 		public function get hours():Number	{
-			return now.getUTCHours() + this.timeZoneOffset;
-		}
-		// ----------------------------------------------------
-		
-		public function render():void {		
-			
-			//hours = now.getHours();
-			//minutes = now.getMinutes();
-			//seconds = now.getSeconds();		
-		}
-			
-		private function tick(event:TimerEvent):void {
-			now = new Date();
-			dispatchEvent(new Event("currentTimeChanged"));
+			trace(_timeZoneOffset);
+			return now.getUTCHours() + timeZoneOffset;
 		}
 
 	}
