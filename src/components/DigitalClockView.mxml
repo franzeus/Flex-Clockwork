@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:components="components.*">
+		
+	<fx:Script>
+		<![CDATA[
+			import models.Model;
+						
+			[Bindable]
+			private var model:Model = new Model();
+					
+		]]>
+	</fx:Script>
+	
+	<s:HGroup id="digitalClockView">
+		<s:Label text="{model.hours}" id="hours"/>
+		<s:Label text=":"/>
+		<s:Label text="{model.minutes}" id="minutes"/>
+		<s:Label text=":"/>
+		<s:Label text="{model.seconds}" id="seconds"/>
+	</s:HGroup>
+
+</s:Group>

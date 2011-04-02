@@ -1,0 +1,38 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+@font-face { 
+	src:url("../assets/DS-DIGII.TTF"); 
+	fontFamily: "_DS-DIGII";
+	advancedAntiAliasing: true; 
+	embedAsCFF: true; 
+	unicode-range: 
+		U+0020-007E, U+00A1-00FF, U+2013-201e, U+2022-203c, U+20AC-20AC, U+2122-2122, U+25AA-25AA, U+00AD-00AD,  
+		U+2011-2011, U+00A0-00A0, U+0153-0153;
+}
+
+#digitalClockView {
+	font-size: 190;
+	font-family: "_DS-DIGII";
+}
+
+#hours, #minutes, #seconds {
+	border-color:#FFFFFF;
+	border-style:solid;
+	border-weight:2;
+	border-visible:true;
+}
+
+#viewSwitch, #switchViewLabel {
+	font-family: "_DS-DIGII";
+}
+
+#switchViewLabel {
+	font-size:50;
+}
+
+s|Application {	
+	color:#FFFFFF;
+	background-color:#000000;
+}

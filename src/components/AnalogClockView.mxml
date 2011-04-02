@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="drawLabels();">
+	<fx:Metadata>
+		[Event(name="onLoad",type="flash.events.Event")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import flash.display.Shape;
+			import models.Model;
+			import spark.components.Label;
+			
+			[Bindable]
+			private var model:Model = new Model();
+			
+			// Show hours of analog clock
+			private function drawLabels():void
+			{
+				var radius:int = 230;
+				var centerX:int = secondsPointer.x; // 400;
+				var centerY:int = secondsPointer.y; //340;
+				for (var i:Number = 1; i <= 12; i++)
+				{
+					
+					var label:Label = new Label();
+					label.text = i.toString();
+					
+					// Places hour labels around the clock face.
+					// The sin() and cos() functions both operate on angles in radians.
+					var angleInRadians:Number = i * 30 * (Math.PI/180)
+					
+					// Place the label using the sin() and cos() functions to get the x,y coordinates.
+					// The multiplier value of 0.9 puts the labels inside the outline of the clock face.
+					// The integer value at the end of the equation adjusts the label position,
+					// since the x,y coordinate is in the upper left corner.
+					label.x = centerX + (0.9 * radius * Math.sin( angleInRadians )) - 5;
+					label.y = centerY - (0.9 * radius * Math.cos( angleInRadians )) - 9;
+					
+					// Adds the label to the clock face display list.
+					addElement(label);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Line x="150" y="250" width="200" id="secondsPointer" rotation="{(model.seconds * 6) - 90}" >
+		<s:stroke>
+			<s:SolidColorStroke color="#cccccc"	weight="1"/>
+		</s:stroke>
+	</s:Line>
+	
+	<s:Line x="150" y="250" width="200" id="minutesPointer" rotation="{(model.minutes * 6) - 90}" >
+		<s:stroke>
+			<s:SolidColorStroke color="#FFFFFF"	weight="5"/>
+		</s:stroke>
+	</s:Line>
+
+	<s:Line x="150" y="250" width="120" id="hoursPointer" rotation="{(model.hours * 30 + (model.minutes * 0.5)) - 90}" >
+		<s:stroke>
+			<s:SolidColorStroke color="#FFFFFF"	weight="15"/>
+		</s:stroke>
+	</s:Line>
+	
+</s:Group>
