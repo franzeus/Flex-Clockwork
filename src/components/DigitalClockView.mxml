@@ -9,16 +9,35 @@
 						
 			[Bindable]
 			private var model:Model = new Model();
-					
+			
+			[Embed(source="../assets/dig_bg.png")]
+			[Bindable]
+			public var imgCls:Class;
+
 		]]>
 	</fx:Script>
 	
 	<s:HGroup id="digitalClockView">
-		<s:Label text="{model.hours}" id="hours"/>
+		
+		<s:BorderContainer id="digitHour" styleName="digitNumberBorder" width="210" backgroundImage="{imgCls}">		
+			<s:Label text="{model.hours}" id="hours"/>
+		</s:BorderContainer>
+		
 		<s:Label text=":" styleName="dots"/>
-		<s:Label text="{model.minutes}" id="minutes"/>
+		
+		<s:BorderContainer id="digitMinute" styleName="digitNumberBorder" width="210" backgroundImage="{imgCls}">	
+			<s:Label text="{model.minutes}" id="minutes"/>
+		</s:BorderContainer>
+		
 		<s:Label text=":" styleName="dots"/>
-		<s:Label text="{model.seconds}" id="seconds"/>
+		
+		<s:BorderContainer id="digitSecond" styleName="digitNumberBorder" width="210" backgroundImage="{imgCls}">	
+			<s:Label text="{model.seconds}" id="seconds"/>
+		</s:BorderContainer>
+		
 	</s:HGroup>
-
+	
+	<s:Line x="{digitHour.x}" y="{digitHour.y + digitHour.height / 2 - 7}" width="{digitSecond.x + digitSecond.width}" >
+		<s:stroke><s:SolidColorStroke color="#000000" weight="2"/></s:stroke>
+	</s:Line>
 </s:Group>

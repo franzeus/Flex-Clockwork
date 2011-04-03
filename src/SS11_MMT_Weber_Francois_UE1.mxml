@@ -23,9 +23,6 @@
 				viewSwitch.value = currentState == 'analog' ? 1 : 0;
 			}
 			
-			public function changeUTCHandler():void {
-				model.timeZoneOffset = timeZoneSwitch.value;
-			}
 		]]>
 	</fx:Script>
 	
@@ -37,7 +34,7 @@
 	<s:VGroup id="body" left="150" top="50" right="150" width="100%" horizontalAlign="center" gap="40">
 		<s:Label text="Clockwork" id="switchViewLabel"/>		
 		
-		<s:HGroup verticalAlign="middle" horizontalAlign="center" height="120" gap="100">
+		<s:HGroup verticalAlign="middle" horizontalAlign="center" id="viewSliderHGroup" gap="100">
 			<mx:Image source="../assets/digital_image.png"  width="100" height="49" click="changeViewHandler('digital')"/>
 			<s:HSlider id="viewSwitch" liveDragging="true" includeIn="digital, analog" maximum="1" minimum="0" change="changeViewHandler()" height="30" width="175"/>
 			<mx:Image source="../assets/analog_img.png"  width="100" height="100" click="changeViewHandler('analog')"/>
@@ -52,8 +49,8 @@
 		<components:DigitalClockView includeIn="digital" />
 		<components:AnalogClockView includeIn="analog" />	
 		
-		<s:Label text="UTC TimeZone {model.timeZoneOffset}"/>		
-		<s:HSlider id="timeZoneSwitch" liveDragging="true" includeIn="digital, analog" maximum="12" minimum="-12" change="changeUTCHandler()" height="15" width="175"/>
+		<s:Label text="UTC TimeZone {timeZoneSwitch.value}"/>		
+		<s:HSlider id="timeZoneSwitch" value="@{model.timeZoneOffset}" includeIn="digital, analog" maximum="12" minimum="-12"  height="15" width="175"/>
 	</s:VGroup>
 
 </s:Application>

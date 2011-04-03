@@ -12,28 +12,32 @@
 		U+2011-2011, U+00A0-00A0, U+0153-0153;
 }
 
-#digitalClockView {
-	font-size: 190;
-	font-family: "_DS-DIGII";
+s|Application {	
+	color:#FFFFFF;
+	background-color:#000000;
 }
 
-#hours, #minutes, #seconds, .dots {
-	border-color:#FFFFFF;
-	border-style:solid;
-	border-weight:2;
-	border-visible:true;
+#digitalClockView {
+	font-size: 170;
+	font-family: "_DS-DIGII";
+	text-decoration:line-through;
 	color:#FFFFFF;
 }
 
-#viewSwitch, #switchViewLabel {
+.digitNumberBorder {
+	/*skin-class: ClassReference("DigitBackground");*/
+	border-color:#333333;
+	border-style:inset;
+	border-weight:3;
+	border-visible:true;
+	text-align:center;
+	tracking-left:20;
+}
+
+#viewSwitch, #switchViewLabel, .hourLabel {
 	font-family: "_DS-DIGII";
 }
 
 #switchViewLabel {
 	font-size:50;
-}
-
-s|Application {	
-	color:#FFFFFF;
-	background-color:#000000;
 }
